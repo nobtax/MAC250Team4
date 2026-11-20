@@ -1,24 +1,36 @@
--- MAC 250 Team 4: TikTok sample data (SQLite)
--- Run schema.sql FIRST on a new empty database.
+-- MAC 250 Team 4: TikTok
 PRAGMA foreign_keys = ON;
 BEGIN TRANSACTION;
 
--- Parent tables: at least 5 rows each.
+-- 1. USERS
 INSERT INTO users (user_id, username, display_name, joined_at, is_private) VALUES
     (1, 'nycfoodtrail', 'Maya Chen', '2026-01-12', 0),
     (2, 'codewithari', 'Ari Patel', '2026-02-03', 0),
     (3, 'fitwithlea', 'Lea Torres', '2026-02-18', 0),
     (4, 'cityframes', 'Jordan Kim', '2026-03-09', 1),
-    (5, 'studywithnoor', 'Noor Ahmed', '2026-04-21', 0);
+    (5, 'studywithnoor', 'Noor Ahmed', '2026-04-21', 0),
+    (6, 'brooklynbeats', 'Devon Brooks', '2026-05-04', 0),
+    (7, 'techwithsam', 'Samira Haddad', '2026-05-19', 0),
+    (8, 'cozycorner_jp', 'Hana Sato', '2026-06-02', 1),
+    (9, 'streetstyle_ny', 'Mateo Rivera', '2026-06-15', 0),
+    (10, 'quickbites_nyc', 'Chloe Bennett', '2026-07-01', 0),
+    (11, 'mindfulhabits', 'Elena Novak', '2026-07-18', 0),
+    (12, 'late_night_dev', 'Lucas Silva', '2026-08-05', 1);
 
+-- 2. SOUNDS
 INSERT INTO sounds (sound_id, title, creator_name, duration_seconds) VALUES
     (1, 'Morning Metro Beat', 'Metro Loops', 24),
     (2, 'Quiet Study Piano', 'Blue Desk Audio', 45),
     (3, 'Quick Recipe Groove', 'Kitchen Tracks', 30),
     (4, 'Workout Count-In', 'Pulse Sounds', 20),
-    (5, 'City Walk Ambience', 'Street Sounds', 40);
+    (5, 'City Walk Ambience', 'Street Sounds', 40),
+    (6, 'Lo-Fi Coding Pulse', 'Synth Lab', 52),
+    (7, 'Sunday Market Funk', 'Groove Factory', 28),
+    (8, 'Sunrise Stretch', 'Calm Waves', 35),
+    (9, 'Neon Alley Bass', 'Night Shift Audio', 26),
+    (10, 'Espresso Break Jazz', 'Cafe Session', 33);
 
--- Child/relationship tables: at least 15 rows each.
+-- 3. VIDEOS 
 INSERT INTO videos (video_id, user_id, sound_id, caption, posted_at, view_count) VALUES
     (101, 1, 3, 'Three affordable dumpling spots in Queens', '2026-09-01 12:00:00', 18500),
     (102, 2, 2, 'SQL joins in sixty seconds', '2026-09-02 18:15:00', 4200),
@@ -34,8 +46,24 @@ INSERT INTO videos (video_id, user_id, sound_id, caption, posted_at, view_count)
     (112, 2, 1, 'Primary keys versus foreign keys', '2026-09-15 15:20:00', 8700),
     (113, 3, 4, 'Four simple gym exercises', '2026-09-16 06:50:00', 12200),
     (114, 4, 5, 'Favorite quiet corner of the city', '2026-09-18 17:45:00', 4700),
-    (115, 5, 2, 'Five tips before exam week', '2026-09-20 09:00:00', 15900);
+    (115, 5, 2, 'Five tips before exam week', '2026-09-20 09:00:00', 15900),
+    (116, 6, 6, 'Building a small beat in ten minutes', '2026-09-21 17:10:00', 9800),
+    (117, 7, 6, 'Shortcut keys every dev should know', '2026-09-22 11:20:00', 19400),
+    (118, 8, 10, 'Morning matcha and notebook notes', '2026-09-23 08:45:00', 3100),
+    (119, 9, 7, 'Weekend thrift outfit in SoHo', '2026-09-24 15:00:00', 13700),
+    (120, 10, 3, 'Crispy garlic toast in 3 minutes', '2026-09-25 12:30:00', 21500),
+    (121, 11, 8, 'Five minute reset before sleep', '2026-09-26 22:05:00', 6400),
+    (122, 12, 9, 'Debugging SQL at midnight', '2026-09-27 23:40:00', 1900),
+    (123, 6, 7, 'Ferry ride views toward Brooklyn', '2026-09-28 16:15:00', 8300),
+    (124, 7, 2, 'Why indexes speed up queries', '2026-09-29 14:50:00', 16200),
+    (125, 9, 9, 'Autumn jacket layering ideas', '2026-09-30 18:20:00', 11100),
+    (126, 10, 10, 'Best iced latte spots on 5th Ave', '2026-10-01 10:10:00', 17800),
+    (127, 11, 8, 'Desk posture check reminder', '2026-10-02 13:45:00', 5900),
+    (128, 1, 7, 'Spicy sesame cucumber salad', '2026-10-03 12:25:00', 20400),
+    (129, 2, 6, 'GROUP BY vs HAVING explained fast', '2026-10-04 19:00:00', 12900),
+    (130, 5, 10, 'Flashcard method that actually sticks', '2026-10-05 09:30:00', 14600);
 
+-- 4. COMMENTS
 INSERT INTO comments (comment_id, video_id, user_id, comment_text, commented_at) VALUES
     (201, 101, 2, 'Adding this to my weekend list!', '2026-09-01 13:05:00'),
     (202, 101, 5, 'Which place has vegetarian options?', '2026-09-01 13:22:00'),
@@ -51,8 +79,24 @@ INSERT INTO comments (comment_id, video_id, user_id, comment_text, commented_at)
     (212, 111, 4, 'What noodles did you use?', '2026-09-14 13:30:00'),
     (213, 112, 5, 'Exactly what I needed for class.', '2026-09-15 16:00:00'),
     (214, 113, 2, 'Great beginner-friendly list.', '2026-09-16 08:00:00'),
-    (215, 115, 1, 'Exam week tips are always useful.', '2026-09-20 10:10:00');
+    (215, 115, 1, 'Exam week tips are always useful.', '2026-09-20 10:10:00'),
+    (216, 116, 2, 'The snare transition sounds super clean.', '2026-09-21 18:00:00'),
+    (217, 117, 6, 'Tried the multi-cursor tip today, huge time saver.', '2026-09-22 12:15:00'),
+    (218, 118, 11, 'Very calm morning vibe.', '2026-09-23 09:20:00'),
+    (219, 119, 1, 'That jacket color works really well.', '2026-09-24 16:05:00'),
+    (220, 120, 1, 'Making this for lunch tomorrow.', '2026-09-25 13:10:00'),
+    (221, 121, 3, 'Needed this reminder before bed.', '2026-09-26 22:30:00'),
+    (222, 122, 7, 'Been there more times than I can count.', '2026-09-28 00:15:00'),
+    (223, 123, 9, 'Best time to take the ferry.', '2026-09-28 17:00:00'),
+    (224, 124, 2, 'Clear visual breakdown of indexes.', '2026-09-29 15:40:00'),
+    (225, 125, 6, 'Clean layering combo.', '2026-09-30 19:05:00'),
+    (226, 126, 1, 'Saving these coffee spots for next week.', '2026-10-01 11:20:00'),
+    (227, 127, 5, 'Sitting up straight right now!', '2026-10-02 14:10:00'),
+    (228, 128, 10, 'So refreshing and quick to prep.', '2026-10-03 13:00:00'),
+    (229, 129, 7, 'HAVING after GROUP BY finally clicked.', '2026-10-04 19:45:00'),
+    (230, 130, 2, 'Active recall beats rereading every time.', '2026-10-05 10:15:00');
 
+-- 5. VIDEO_LIKES
 INSERT INTO video_likes (user_id, video_id, liked_at) VALUES
     (2, 101, '2026-09-01 13:06:00'),
     (5, 101, '2026-09-01 13:24:00'),
@@ -68,8 +112,29 @@ INSERT INTO video_likes (user_id, video_id, liked_at) VALUES
     (3, 109, '2026-09-11 20:00:00'),
     (2, 110, '2026-09-12 12:00:00'),
     (4, 111, '2026-09-14 14:00:00'),
-    (5, 112, '2026-09-15 17:00:00');
+    (5, 112, '2026-09-15 17:00:00'),
+    (1, 116, '2026-09-21 17:40:00'),
+    (2, 116, '2026-09-21 18:05:00'),
+    (1, 117, '2026-09-22 11:50:00'),
+    (2, 117, '2026-09-22 12:00:00'),
+    (5, 117, '2026-09-22 12:30:00'),
+    (6, 118, '2026-09-23 09:10:00'),
+    (3, 119, '2026-09-24 15:45:00'),
+    (7, 119, '2026-09-24 16:20:00'),
+    (1, 120, '2026-09-25 12:50:00'),
+    (3, 120, '2026-09-25 13:15:00'),
+    (6, 120, '2026-09-25 14:00:00'),
+    (5, 121, '2026-09-26 22:20:00'),
+    (2, 122, '2026-09-27 23:55:00'),
+    (1, 123, '2026-09-28 16:50:00'),
+    (2, 124, '2026-09-29 15:15:00'),
+    (6, 124, '2026-09-29 16:00:00'),
+    (1, 126, '2026-10-01 10:45:00'),
+    (5, 126, '2026-10-01 11:05:00'),
+    (7, 128, '2026-10-03 12:50:00'),
+    (1, 129, '2026-10-04 19:30:00');
 
+-- 6. FOLLOWS
 INSERT INTO follows (follower_id, followed_id, followed_at) VALUES
     (1, 2, '2026-05-01'),
     (1, 3, '2026-05-02'),
@@ -85,6 +150,21 @@ INSERT INTO follows (follower_id, followed_id, followed_at) VALUES
     (4, 5, '2026-05-12'),
     (5, 1, '2026-05-13'),
     (5, 2, '2026-05-14'),
-    (5, 3, '2026-05-15');
+    (5, 3, '2026-05-15'),
+    (6, 1, '2026-05-16'),
+    (6, 2, '2026-05-17'),
+    (6, 7, '2026-05-18'),
+    (7, 2, '2026-05-19'),
+    (7, 6, '2026-05-20'),
+    (8, 1, '2026-05-21'),
+    (8, 5, '2026-05-22'),
+    (9, 1, '2026-05-23'),
+    (9, 6, '2026-05-24'),
+    (10, 1, '2026-05-25'),
+    (10, 3, '2026-05-26'),
+    (11, 3, '2026-05-27'),
+    (11, 5, '2026-05-28'),
+    (12, 2, '2026-05-29'),
+    (12, 7, '2026-05-30');
 
 COMMIT;
