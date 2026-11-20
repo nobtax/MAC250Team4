@@ -1,9 +1,54 @@
-# MAC 250 – TikTok Database
+TikTok Database Management System
+MAC 250 – Database Concepts and Programming
+LaGuardia Community College
+Team 4 – Group Project
 
-Team 4 | LaGuardia Community College
+Project Overview
+This project is a relational database system designed to simulate TikTok's short-form video platform operations using SQLite.
 
-A SQLite database project simulating TikTok users, videos, comments, likes, sounds, and follows.
+The database manages users, sounds, videos, comments, video likes, and user follows. It also includes SQL analytical queries to evaluate creator popularity, video comment engagement, sound usage, and high-output creators.
 
-Tools: SQL, DB Browser for SQLite
+Database Tables
+users – Stores user accounts, usernames, display names, join dates, and privacy flags (is_private).
+sounds – Stores audio track details, titles, creator names, and durations in seconds.
+videos – Stores video posts, captions, timestamps, view counts, and links to users and sounds.
+comments – Records comments left on videos by users along with timestamps.
+video_likes – Records user likes on videos and when each like occurred.
+follows – Records follower and followed user relationships along with follow dates.
 
-Database: 6 tables, 70 sample records.
+Database Relationships
+One user can post multiple videos, write multiple comments, give multiple likes, and follow or be followed by multiple users.
+One sound can be used across multiple videos.
+Each video belongs to one user and uses one sound, and can receive multiple comments and likes.
+Composite primary keys prevent duplicate likes or duplicate follow pairs for the same user and target.
+
+SQL Analytics
+The project includes analytical queries:
+- Total views and total likes across videos per creator to measure popularity.
+- Total number of comments per individual video.
+- How many times each sound track is used across videos.
+- Creators with more than 2 published videos using the HAVING clause.
+
+These queries demonstrate SQL concepts including JOIN, LEFT JOIN, GROUP BY, HAVING, ORDER BY, COUNT, and SUM.
+
+Project Files
+schema.sql – Creates the SQLite tables, primary/foreign keys, and constraints.
+seed.sql – Inserts sample records into the parent and relationship tables.
+queries.sql – Contains four analytical SQL queries.
+
+How to Run
+Install DB Browser for SQLite.
+Create a new empty SQLite database (or open an existing one) using DB Browser[cite: 4].
+Navigate to the Execute SQL tab.
+To build from scratch, execute schema.sql first, then seed.sql, and then queries.sql.
+Execute the SQL queries to view the analytical results.
+
+Team Members
+Team 4 – MAC 250
+Maximo Vicuna
+Yan Carlos
+Tsetan Tashi
+
+Tools Used
+DB Browser for SQLite
+GitHub
