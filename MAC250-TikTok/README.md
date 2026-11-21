@@ -41,13 +41,7 @@ The database manages users, sounds, videos, comments, video likes, and user foll
 2. **Content Engagement:** Total number of comments per individual video.
 3. **Sound Utilization & Trends:** How many times each sound track is used across videos.
 4. **High-Activity Creators:** Creators with more than 2 published videos filtered using the `HAVING` clause.
-
-### Database Views (`views.sql`)
-1. **`public_records`** – Privacy filter view exposing only videos from public user accounts (`is_private = 0`).
-2. **`public_user_profiles`** – Secure profile view exposing only safe public columns (`user_id`, `username`, `display_name`) for non-private accounts.
-3. **`vw_video_feed`** – Feed view combining public videos, creators, and sounds with total likes and comment counts.
-
-These files demonstrate SQL concepts including `JOIN`, `LEFT JOIN`, `GROUP BY`, `HAVING`, `ORDER BY`, `COUNT`, `SUM`, `CREATE VIEW`, and correlated subqueries.
+5. **Public Views (`views.sql`):** Virtual views (`public_records`, `public_user_profiles`, `vw_video_feed`) to filter public content and summarize the video feed.
 
 ---
 
