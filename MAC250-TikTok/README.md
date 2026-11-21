@@ -78,7 +78,7 @@ These files demonstrate SQL concepts including `JOIN`, `LEFT JOIN`, `GROUP BY`, 
 
 **Team 4 – MAC 250**
 * *Maximo Vicuna*
-* *Yan Carlos*
+* *YanCarlos Alvarez*
 * *Tsetan Tashi*
 * **
 
