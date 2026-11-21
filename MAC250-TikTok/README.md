@@ -10,7 +10,7 @@
 
 This project is a relational database system designed to simulate TikTok's short-form video platform operations using SQLite.
 
-The database manages users, sounds, videos, comments, video likes, and user follows. It also includes SQL analytical queries to evaluate creator popularity, video comment engagement, sound usage, and high-output creators.
+The database manages users, sounds, videos, comments, video likes, and user follows. It also includes SQL analytical queries and database views to evaluate creator popularity, video comment engagement, sound usage, high-output creators, and privacy-filtered public feeds.
 
 ---
 
@@ -34,16 +34,20 @@ The database manages users, sounds, videos, comments, video likes, and user foll
 
 ---
 
-## SQL Analytics
+## SQL Analytics & Views
 
-The project includes analytical queries covering key platform metrics:
-
+### Analytical Queries (`queries.sql`)
 1. **Creator Popularity:** Total views and total likes across videos per creator.
 2. **Content Engagement:** Total number of comments per individual video.
 3. **Sound Utilization & Trends:** How many times each sound track is used across videos.
 4. **High-Activity Creators:** Creators with more than 2 published videos filtered using the `HAVING` clause.
 
-These queries demonstrate SQL concepts including `JOIN`, `LEFT JOIN`, `GROUP BY`, `HAVING`, `ORDER BY`, `COUNT`, and `SUM`.
+### Database Views (`views.sql`)
+1. **`public_records`** – Privacy filter view exposing only videos from public user accounts (`is_private = 0`).
+2. **`public_user_profiles`** – Secure profile view exposing only safe public columns (`user_id`, `username`, `display_name`) for non-private accounts.
+3. **`vw_video_feed`** – Feed view combining public videos, creators, and sounds with total likes and comment counts.
+
+These files demonstrate SQL concepts including `JOIN`, `LEFT JOIN`, `GROUP BY`, `HAVING`, `ORDER BY`, `COUNT`, `SUM`, `CREATE VIEW`, and correlated subqueries.
 
 ---
 
@@ -51,7 +55,8 @@ These queries demonstrate SQL concepts including `JOIN`, `LEFT JOIN`, `GROUP BY`
 
 * `schema.sql` – Creates the SQLite tables, primary/foreign keys, and constraints.
 * `seed.sql` – Inserts sample records into the parent and relationship tables.
-* `queries.sql` – Contains four analytical SQL queries.
+* `queries.sql` – Contains the four analytical SQL queries.
+* `views.sql` – Creates the virtual views for privacy filtering and video feed aggregation.
 
 ---
 
@@ -60,8 +65,12 @@ These queries demonstrate SQL concepts including `JOIN`, `LEFT JOIN`, `GROUP BY`
 1. Install **DB Browser for SQLite**.
 2. Create a new empty SQLite database (or open an existing one) using DB Browser.
 3. Navigate to the **Execute SQL** tab.
-4. To build from scratch, execute `schema.sql` first, then `seed.sql`, and then `queries.sql`.
-5. Execute the SQL queries to view the analytical results.
+4. To build from scratch, execute the files in the following order:
+   1. `schema.sql`
+   2. `seed.sql`
+   3. `views.sql`
+   4. `queries.sql`
+5. Inspect the analytical results or query the created views (e.g., `SELECT * FROM vw_video_feed;`).
 
 ---
 
@@ -71,7 +80,7 @@ These queries demonstrate SQL concepts including `JOIN`, `LEFT JOIN`, `GROUP BY`
 * *Maximo Vicuna*
 * *Yan Carlos*
 * *Tsetan Tashi*
-* *(Add team member 4)*
+* **
 
 ---
 
