@@ -35,7 +35,7 @@ LEFT JOIN videos v ON s.sound_id = v.sound_id
 GROUP BY s.sound_id, s.title, s.creator_name
 ORDER BY times_used DESC;
 
--- Filters creators who have published more than 2 videos using the HAVING clause[cite: 1].
+-- Filters creators who have published more than 2 videos using the HAVING clause.
 SELECT 
     u.user_id,
     u.username,
