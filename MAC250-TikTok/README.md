@@ -80,7 +80,9 @@ These files demonstrate SQL concepts including `JOIN`, `LEFT JOIN`, `GROUP BY`, 
 * *Maximo Vicuna*
 * *YanCarlos Alvarez*
 * *Tsetan Tashi*
-* **
+* *Lewis Victoria*
+* *Curtis Fowler*
+* *Donte Geathers*
 
 ---
 
