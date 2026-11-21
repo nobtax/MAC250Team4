@@ -1,5 +1,4 @@
-
--- MAC 250 - Team 4: TikTok Views (SQLite)
+-- MAC 250 - Team 4: TikTok Views
 
 -- 1. PRIVACY FILTER VIEW
 -- Exposes only videos from public user accounts (is_private = 0)
